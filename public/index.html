@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Assignment Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Student Assignment Tracker</h1>
+
+    <div class="container">
+
+        <h2>Add Assignment</h2>
+
+        <label>Subject</label>
+        <input type="text" id="subject" placeholder="Enter subject">
+
+        <label>Assignment</label>
+        <input type="text" id="assignment" placeholder="Enter assignment">
+
+        <label>Deadline</label>
+        <input type="date" id="deadline">
+
+        <button onclick="addAssignment()">Add Assignment</button>
+
+        <h2>My Assignments</h2>
+
+        <div id="assignmentList"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
