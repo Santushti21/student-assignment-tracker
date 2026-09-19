@@ -1,34 +1,218 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Student Assignment Tracker</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Student Assignment Tracker</h1>
+    <!-- HEADER -->
+    <header class="header">
+        <div>
+            <h1>🎓 Student Assignment Tracker</h1>
+            <p>Stay organized. Stay ahead. ✨</p>
+        </div>
+    </header>
 
-    <div class="container">
 
-        <h2>Add Assignment</h2>
+    <main class="container">
 
-        <label>Subject</label>
-        <input type="text" id="subject" placeholder="Enter subject">
+        <!-- DASHBOARD -->
+        <section class="dashboard">
 
-        <label>Assignment</label>
-        <input type="text" id="assignment" placeholder="Enter assignment">
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div>
+                    <h3 id="totalCount">0</h3>
+                    <p>Total Assignments</p>
+                </div>
+            </div>
 
-        <label>Deadline</label>
-        <input type="date" id="deadline">
+            <div class="stat-card completed-card">
+                <div class="stat-icon">✅</div>
+                <div>
+                    <h3 id="completedCount">0</h3>
+                    <p>Completed</p>
+                </div>
+            </div>
 
-        <button onclick="addAssignment()">Add Assignment</button>
+            <div class="stat-card pending-card">
+                <div class="stat-icon">⏳</div>
+                <div>
+                    <h3 id="pendingCount">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
 
-        <h2>My Assignments</h2>
+            <div class="stat-card urgent-card">
+                <div class="stat-icon">🔥</div>
+                <div>
+                    <h3 id="dueSoonCount">0</h3>
+                    <p>Due Soon</p>
+                </div>
+            </div>
 
-        <div id="assignmentList"></div>
+        </section>
 
-    </div>
+
+        <!-- PROGRESS -->
+        <section class="progress-section">
+
+            <div class="section-heading">
+                <h2>📈 Your Progress</h2>
+                <span id="progressPercentage">0%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+
+            <p id="progressText">Start completing your assignments!</p>
+
+        </section>
+
+
+        <!-- TODAY'S FOCUS -->
+        <section class="focus-section">
+
+            <div class="focus-title">
+                🎯 <strong>Today's Focus</strong>
+            </div>
+
+            <div id="todayFocus">
+                Add an assignment to see what you should focus on.
+            </div>
+
+        </section>
+
+
+        <!-- ADD ASSIGNMENT -->
+        <section class="add-section">
+
+            <h2>➕ Add Assignment</h2>
+
+            <label for="subject">Subject</label>
+            <input
+                type="text"
+                id="subject"
+                placeholder="e.g. DBMS"
+            >
+
+            <label for="assignment">Assignment</label>
+            <input
+                type="text"
+                id="assignment"
+                placeholder="e.g. Functional Dependencies"
+            >
+
+            <label for="deadline">Deadline</label>
+            <input
+                type="date"
+                id="deadline"
+            >
+
+            <button class="add-button" onclick="addAssignment()">
+                ➕ Add Assignment
+            </button>
+
+        </section>
+
+
+        <!-- ASSIGNMENTS -->
+        <section class="assignments-section">
+
+            <div class="assignments-header">
+
+                <h2>📚 My Assignments</h2>
+
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔎 Search assignments..."
+                        oninput="filterAssignments()"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- FILTERS -->
+            <div class="filters">
+
+                <button
+                    class="filter-button active"
+                    onclick="setFilter('all', this)">
+                    All
+                </button>
+
+                <button
+                    class="filter-button"
+                    onclick="setFilter('pending', this)">
+                    ⏳ Pending
+                </button>
+
+                <button
+                    class="filter-button"
+                    onclick="setFilter('completed', this)">
+                    ✅ Completed
+                </button>
+
+                <button
+                    class="filter-button"
+                    onclick="setFilter('soon', this)">
+                    🔥 Due Soon
+                </button>
+
+            </div>
+
+
+            <!-- SORT -->
+            <div class="sort-section">
+
+                <label for="sortSelect">Sort by:</label>
+
+                <select id="sortSelect" onchange="sortAssignments()">
+
+                    <option value="deadline">
+                        Nearest Deadline
+                    </option>
+
+                    <option value="deadline-late">
+                        Latest Deadline
+                    </option>
+
+                    <option value="subject">
+                        Subject A-Z
+                    </option>
+
+                    <option value="status">
+                        Pending First
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ASSIGNMENT CARDS -->
+            <div id="assignmentList"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Made for smarter student productivity 💜</p>
+    </footer>
+
 
     <script src="script.js"></script>
 
